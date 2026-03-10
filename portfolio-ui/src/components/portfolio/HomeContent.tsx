@@ -2,7 +2,6 @@ import { ProjectCardRedesigned } from "@/components/portfolio/ProjectCardRedesig
 import { HeroSection } from "@/components/portfolio/HeroSection"
 import { ScatteredSkills } from "@/components/portfolio/ScatteredSkills"
 import { SmokeBackground } from "@/components/ui/spooky-smoke-animation"
-import { TextRevealByWord } from "@/components/ui/text-reveal"
 
 export default function HomeContent() {
     const clientProjects = [
@@ -80,7 +79,9 @@ export default function HomeContent() {
                         <h2 className="text-4xl md:text-8xl font-black uppercase tracking-tighter text-white">
                             Casos de <span className="text-primary italic font-serif font-light lowercase">Sucesso</span>
                         </h2>
-                        <TextRevealByWord className="max-w-2xl mt-4" text="De automações de processos internos a SaaS baseados em Inteligência Artificial Generativa." />
+                        <p className="max-w-2xl mt-4 text-lg text-zinc-400 md:ml-0 mx-auto">
+                            De automações de processos internos a SaaS baseados em Inteligência Artificial Generativa.
+                        </p>
                     </div>
 
                     <div className="grid gap-0 border-b border-primary/20">
@@ -96,11 +97,9 @@ export default function HomeContent() {
                         <h2 className="text-5xl md:text-[100px] font-black uppercase tracking-tighter leading-none text-white mb-8">
                             Vamos <span className="text-primary italic font-serif font-light lowercase">Escalar</span>
                         </h2>
-                        <TextRevealByWord
-                            text="Em 24h tenho uma arquitetura desenhada para o seu problema. Sem calls longas. Direto ao resultado."
-                            className="mb-12"
-                            textClassName="text-xl text-zinc-400 font-serif italic justify-center text-center"
-                        />
+                        <p className="mb-12 text-xl text-zinc-400 font-serif italic justify-center text-center">
+                            Em 24h tenho uma arquitetura desenhada para o seu problema. Sem calls longas. Direto ao resultado.
+                        </p>
                         <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
                             <a href="mailto:seuemail@email.com" className="bg-primary hover:bg-white text-black px-12 py-6 font-black uppercase tracking-widest text-sm transition-colors w-full sm:w-auto text-center">
                                 Enviar E-mail
