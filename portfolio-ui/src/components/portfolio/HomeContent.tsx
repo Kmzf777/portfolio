@@ -1,3 +1,5 @@
+"use client"
+
 import { ProjectCardRedesigned } from "@/components/portfolio/ProjectCardRedesigned"
 import { HeroSection } from "@/components/portfolio/HeroSection"
 import { AboutMeSection } from "@/components/portfolio/AboutMeSection"
