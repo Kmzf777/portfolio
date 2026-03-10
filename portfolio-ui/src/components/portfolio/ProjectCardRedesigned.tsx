@@ -2,6 +2,7 @@
 
 import { ExternalLink, Github, ArrowRight } from "lucide-react"
 import { motion } from "framer-motion"
+import { TextRevealByWord } from "@/components/ui/text-reveal"
 import {
     Carousel,
     CarouselContent,
@@ -66,9 +67,11 @@ export function ProjectCardRedesigned({
                         ))}
                     </div>
 
-                    <p className="text-base text-zinc-300 leading-relaxed mb-8">
-                        {description}
-                    </p>
+                    <TextRevealByWord
+                        text={description}
+                        className="mb-8"
+                        textClassName="text-base text-zinc-300 leading-relaxed font-mono"
+                    />
 
                     {technicalDetails && (
                         <div className="mb-8 p-4 bg-zinc-900/50 border-l-2 border-primary">

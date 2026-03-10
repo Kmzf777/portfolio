@@ -1,6 +1,8 @@
 import { ProjectCardRedesigned } from "@/components/portfolio/ProjectCardRedesigned"
 import { HeroSection } from "@/components/portfolio/HeroSection"
 import { ScatteredSkills } from "@/components/portfolio/ScatteredSkills"
+import { SmokeBackground } from "@/components/ui/spooky-smoke-animation"
+import { TextRevealByWord } from "@/components/ui/text-reveal"
 
 export default function HomeContent() {
     const clientProjects = [
@@ -58,56 +60,63 @@ export default function HomeContent() {
     ]
 
     return (
-        <div className="bg-black min-h-screen w-full overflow-x-hidden text-white font-mono selection:bg-primary selection:text-black">
-            {/* Hero Section */}
-            <HeroSection />
+        <div className="bg-black min-h-screen w-full overflow-x-hidden text-white font-mono selection:bg-primary selection:text-black relative">
 
-            {/* Floating Skills / Needs */}
-            <ScatteredSkills />
+            {/* Animated Fixed Background */}
+            <div className="fixed inset-0 z-0 pointer-events-none opacity-40 mix-blend-screen">
+                <SmokeBackground smokeColor="#2cff05" className="w-full h-full" />
+            </div>
 
-            {/* Projects Section */}
-            <section className="py-24 px-6 max-w-7xl mx-auto">
-                <div className="mb-24 text-center md:text-left">
-                    <h2 className="text-4xl md:text-8xl font-black uppercase tracking-tighter text-white">
-                        Casos de <span className="text-primary italic font-serif font-light lowercase">Sucesso</span>
-                    </h2>
-                    <p className="text-xl text-zinc-500 mt-6 max-w-2xl font-serif italic">
-                        De automações de processos internos a SaaS baseados em Inteligência Artificial Generativa.
-                    </p>
-                </div>
+            <div className="relative z-10">
+                {/* Hero Section */}
+                <HeroSection />
 
-                <div className="grid gap-0 border-b border-primary/20">
-                    {[...clientProjects, ...personalProjects].map((project, idx) => (
-                        <ProjectCardRedesigned key={idx} {...project} />
-                    ))}
-                </div>
-            </section>
+                {/* Floating Skills / Needs */}
+                <ScatteredSkills />
 
-            {/* Final CTA / Footer */}
-            <footer className="py-32 px-6 border-t border-zinc-900 bg-[radial-gradient(ellipse_at_top,rgba(44,255,5,0.08)_0%,transparent_70%)]">
-                <div className="max-w-4xl mx-auto text-center">
-                    <h2 className="text-5xl md:text-[100px] font-black uppercase tracking-tighter leading-none text-white mb-8">
-                        Vamos <span className="text-primary italic font-serif font-light lowercase">Escalar</span>
-                    </h2>
-                    <p className="text-xl text-zinc-400 font-serif italic mb-12">
-                        Em 24h tenho uma arquitetura desenhada para o seu problema.
-                        Sem calls longas. Direto ao resultado.
-                    </p>
-                    <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-                        <a href="mailto:seuemail@email.com" className="bg-primary hover:bg-white text-black px-12 py-6 font-black uppercase tracking-widest text-sm transition-colors w-full sm:w-auto text-center">
-                            Enviar E-mail
-                        </a>
-                        <a href="https://wa.me/55000000000" className="border-2 border-zinc-800 hover:border-primary text-white hover:text-primary px-12 py-6 font-black uppercase tracking-widest text-sm transition-colors w-full sm:w-auto text-center">
-                            Falar no WhatsApp
-                        </a>
+                {/* Projects Section */}
+                <section className="py-24 px-6 max-w-7xl mx-auto">
+                    <div className="mb-24 text-center md:text-left">
+                        <h2 className="text-4xl md:text-8xl font-black uppercase tracking-tighter text-white">
+                            Casos de <span className="text-primary italic font-serif font-light lowercase">Sucesso</span>
+                        </h2>
+                        <TextRevealByWord className="max-w-2xl mt-4" text="De automações de processos internos a SaaS baseados em Inteligência Artificial Generativa." />
                     </div>
 
-                    <div className="mt-32 pt-8 border-t border-zinc-900 flex flex-col md:flex-row justify-between items-center text-xs text-zinc-600 font-bold uppercase tracking-widest gap-4">
-                        <span>© 2025 Rafael Reis Silva</span>
-                        <a href="https://github.com/Kmzf777" className="hover:text-primary transition-colors">GitHub Profile</a>
+                    <div className="grid gap-0 border-b border-primary/20">
+                        {[...clientProjects, ...personalProjects].map((project, idx) => (
+                            <ProjectCardRedesigned key={idx} {...project} />
+                        ))}
                     </div>
-                </div>
-            </footer>
+                </section>
+
+                {/* Final CTA / Footer */}
+                <footer className="py-32 px-6 border-t border-zinc-900 bg-[radial-gradient(ellipse_at_top,rgba(44,255,5,0.08)_0%,transparent_70%)]">
+                    <div className="max-w-4xl mx-auto text-center">
+                        <h2 className="text-5xl md:text-[100px] font-black uppercase tracking-tighter leading-none text-white mb-8">
+                            Vamos <span className="text-primary italic font-serif font-light lowercase">Escalar</span>
+                        </h2>
+                        <TextRevealByWord
+                            text="Em 24h tenho uma arquitetura desenhada para o seu problema. Sem calls longas. Direto ao resultado."
+                            className="mb-12"
+                            textClassName="text-xl text-zinc-400 font-serif italic justify-center text-center"
+                        />
+                        <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                            <a href="mailto:seuemail@email.com" className="bg-primary hover:bg-white text-black px-12 py-6 font-black uppercase tracking-widest text-sm transition-colors w-full sm:w-auto text-center">
+                                Enviar E-mail
+                            </a>
+                            <a href="https://wa.me/55000000000" className="border-2 border-zinc-800 hover:border-primary text-white hover:text-primary px-12 py-6 font-black uppercase tracking-widest text-sm transition-colors w-full sm:w-auto text-center">
+                                Falar no WhatsApp
+                            </a>
+                        </div>
+
+                        <div className="mt-32 pt-8 border-t border-zinc-900 flex flex-col md:flex-row justify-between items-center text-xs text-zinc-600 font-bold uppercase tracking-widest gap-4">
+                            <span>© 2025 Rafael Reis Silva</span>
+                            <a href="https://github.com/Kmzf777" className="hover:text-primary transition-colors">GitHub Profile</a>
+                        </div>
+                    </div>
+                </footer>
+            </div>
         </div>
     )
 }

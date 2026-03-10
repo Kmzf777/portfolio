@@ -1,6 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
+import { TextRevealByWord } from "@/components/ui/text-reveal"
 
 export function HeroSection() {
     return (
@@ -47,10 +48,11 @@ export function HeroSection() {
                     transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
                     className="max-w-2xl mt-8"
                 >
-                    <p className="text-lg md:text-xl text-zinc-400 font-mono leading-relaxed mb-8">
-                        Agentes de IA, automações e produtos digitais que trabalham enquanto você dorme.
-                        <strong className="text-white font-bold inline-block ml-2 border-b-2 border-primary">20 anos. 1 ano de mercado. Resultados reais.</strong>
-                    </p>
+                    <TextRevealByWord
+                        text="Agentes de IA, automações e produtos digitais que trabalham enquanto você dorme. 20 anos. 1 ano de mercado. Resultados reais."
+                        className="mb-8"
+                        textClassName="text-lg md:text-xl text-zinc-400 font-mono leading-relaxed justify-center"
+                    />
 
                     <div className="flex gap-6 justify-center">
                         <a href="mailto:seuemail@email.com" className="bg-primary text-black px-8 py-4 font-black uppercase tracking-widest text-sm hover:bg-primary/80 transition-colors">
