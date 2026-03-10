@@ -52,8 +52,15 @@ export function HeroSection() {
                     </p>
 
                     <div className="flex gap-6 justify-center">
-                        <a href="mailto:seuemail@email.com" className="bg-primary text-black px-8 py-4 font-black uppercase tracking-widest text-sm hover:bg-primary/80 transition-colors">
-                            Iniciar Projeto
+                        <a
+                            href="#sobre-mim"
+                            onClick={(e) => {
+                                e.preventDefault()
+                                document.getElementById("sobre-mim")?.scrollIntoView({ behavior: "smooth" })
+                            }}
+                            className="bg-primary text-black px-8 py-4 font-black uppercase tracking-widest text-sm hover:bg-primary/80 transition-colors cursor-pointer"
+                        >
+                            Conhecer
                         </a>
                     </div>
                 </motion.div>

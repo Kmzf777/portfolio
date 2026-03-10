@@ -1,7 +1,9 @@
 import { ProjectCardRedesigned } from "@/components/portfolio/ProjectCardRedesigned"
 import { HeroSection } from "@/components/portfolio/HeroSection"
+import { AboutMeSection } from "@/components/portfolio/AboutMeSection"
 import { ScatteredSkills } from "@/components/portfolio/ScatteredSkills"
 import { SmokeBackground } from "@/components/ui/spooky-smoke-animation"
+import { motion } from "framer-motion"
 
 export default function HomeContent() {
     const clientProjects = [
@@ -70,19 +72,28 @@ export default function HomeContent() {
                 {/* Hero Section */}
                 <HeroSection />
 
+                {/* About Me Section */}
+                <AboutMeSection />
+
                 {/* Floating Skills / Needs */}
                 <ScatteredSkills />
 
                 {/* Projects Section */}
                 <section className="py-24 px-6 max-w-7xl mx-auto">
-                    <div className="mb-24 text-center md:text-left">
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "-100px" }}
+                        transition={{ duration: 0.8 }}
+                        className="mb-24 text-center md:text-left"
+                    >
                         <h2 className="text-4xl md:text-8xl font-black uppercase tracking-tighter text-white">
                             Casos de <span className="text-primary italic font-serif font-light lowercase">Sucesso</span>
                         </h2>
                         <p className="max-w-2xl mt-4 text-lg text-zinc-400 md:ml-0 mx-auto">
                             De automações de processos internos a SaaS baseados em Inteligência Artificial Generativa.
                         </p>
-                    </div>
+                    </motion.div>
 
                     <div className="grid gap-0 border-b border-primary/20">
                         {[...clientProjects, ...personalProjects].map((project, idx) => (
@@ -93,7 +104,13 @@ export default function HomeContent() {
 
                 {/* Final CTA / Footer */}
                 <footer className="py-32 px-6 border-t border-zinc-900 bg-[radial-gradient(ellipse_at_top,rgba(44,255,5,0.08)_0%,transparent_70%)]">
-                    <div className="max-w-4xl mx-auto text-center">
+                    <motion.div
+                        initial={{ opacity: 0, y: 50 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8 }}
+                        className="max-w-4xl mx-auto text-center"
+                    >
                         <h2 className="text-5xl md:text-[100px] font-black uppercase tracking-tighter leading-none text-white mb-8">
                             Vamos <span className="text-primary italic font-serif font-light lowercase">Escalar</span>
                         </h2>
@@ -113,7 +130,7 @@ export default function HomeContent() {
                             <span>© 2025 Rafael Reis Silva</span>
                             <a href="https://github.com/Kmzf777" className="hover:text-primary transition-colors">GitHub Profile</a>
                         </div>
-                    </div>
+                    </motion.div>
                 </footer>
             </div>
         </div>
