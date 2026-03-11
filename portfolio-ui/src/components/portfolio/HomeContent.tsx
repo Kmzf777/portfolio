@@ -3,65 +3,11 @@
 import { ProjectCardRedesigned } from "@/components/portfolio/ProjectCardRedesigned"
 import { HeroSection } from "@/components/portfolio/HeroSection"
 import { AboutMeSection } from "@/components/portfolio/AboutMeSection"
-import { ScatteredSkills } from "@/components/portfolio/ScatteredSkills"
+import { CafeCanastraCaseStudy } from "@/components/portfolio/CafeCanastraCaseStudy"
 import { SmokeBackground } from "@/components/ui/spooky-smoke-animation"
 import { motion } from "framer-motion"
 
 export default function HomeContent() {
-    const clientProjects = [
-        {
-            title: "Café Canastra",
-            subtitle: "Ecossistema Digital Premium",
-            tags: ["IA Agent", "WhatsApp API", "n8n", "Produção"],
-            description: "Agente de atendimento no WhatsApp construído em n8n. Qualifica leads, identifica o setor e transfere para o vendedor correto de forma completamente humanizada — indistinguível de um atendente humano.",
-            metrics: [
-                { label: "Leads via IA", value: "1.600+" },
-                { label: "Uptime", value: "10m" },
-                { label: "Pico/Mês", value: "312" },
-            ],
-            technicalDetails: "A humanização opera por variação de tempo de resposta, linguagem adaptativa por perfil do lead e memória de curto prazo para evitar repetições algorítmicas.",
-            stack: ["n8n", "Claude/Gemini", "WhatsApp API"],
-            links: {}
-        },
-        {
-            title: "BeeInside",
-            subtitle: "BI Financeiro & ERP Integrado",
-            tags: ["Node.js", "Bling API", "Data Analytics"],
-            description: "Sistema financeiro proprietário que conecta múltiplos ERPs para gerar análises de rentabilidade em tempo real. Elimina planilhas manuais ao cruzar notas fiscais, custos e margens de duas operações distintas.",
-            technicalDetails: "Arquitetura de dados customizada para normalizar estruturas divergentes em uma visão financeira consolidada de margens de lucro.",
-            stack: ["Node.js", "Bling ERP", "Data Normalization"],
-            links: {}
-        }
-    ]
-
-    const personalProjects = [
-        {
-            title: "ShadowFeed",
-            subtitle: "Automação Multiagente para Instagram",
-            tags: ["SaaS Beta", "Pipeline IA", "Geração de Imagens"],
-            description: "Sistema avançado de automação de posts carrossel. A IA realiza pesquisa de conteúdo, cria a narrativa, gera as imagens mantendo a identidade visual e entrega os slides prontos para publicação.",
-            metrics: [
-                { label: "Pipeline", value: "100% Autônomo" },
-                { label: "User", value: "@vistra.ia" }
-            ],
-            technicalDetails: "Pipeline com 3 agentes especializados (Pesquisa, Roteiro, Imagem) gerenciados por um orquestrador central para outputs zero-touch.",
-            stack: ["Python", "Claude", "Gemini", "Image Generation"],
-            links: {
-                github: "https://github.com/Kmzf777/shadowfeed-beta"
-            }
-        },
-        {
-            title: "JobAI",
-            subtitle: "Máquina de Vendas no WhatsApp",
-            tags: ["Engenharia de Prompt", "Vendas", "n8n"],
-            description: "Agente de vendas com engenharia de prompt avançada. O funil de vendas é embutido na conversa de forma natural, adaptando a linguagem ao usuário em tempo real.",
-            stack: ["WhatsApp API", "LLM", "Prompt Engineering"],
-            links: {
-                github: "https://github.com/Kmzf777/jobai"
-            }
-        }
-    ]
-
     return (
         <div className="bg-black min-h-screen w-full overflow-x-hidden text-white font-mono selection:bg-primary selection:text-black relative">
 
@@ -77,17 +23,14 @@ export default function HomeContent() {
                 {/* About Me Section */}
                 <AboutMeSection />
 
-                {/* Floating Skills / Needs */}
-                <ScatteredSkills />
-
                 {/* Projects Section */}
-                <section className="py-24 px-6 max-w-7xl mx-auto">
+                <section className="py-24 max-w-7xl mx-auto bg-black">
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, margin: "-100px" }}
                         transition={{ duration: 0.8 }}
-                        className="mb-24 text-center md:text-left"
+                        className="mb-24 text-center md:text-left px-6"
                     >
                         <h2 className="text-4xl md:text-8xl font-black uppercase tracking-tighter text-white">
                             Casos de <span className="text-primary italic font-serif font-light lowercase">Sucesso</span>
@@ -97,10 +40,9 @@ export default function HomeContent() {
                         </p>
                     </motion.div>
 
-                    <div className="grid gap-0 border-b border-primary/20">
-                        {[...clientProjects, ...personalProjects].map((project, idx) => (
-                            <ProjectCardRedesigned key={idx} {...project} />
-                        ))}
+                    {/* Cafe Canastra Case Study (includes Parallax & Copy) */}
+                    <div className="w-full border-t border-primary/20">
+                        <CafeCanastraCaseStudy />
                     </div>
                 </section>
 

@@ -11,110 +11,139 @@ Determine the default path for components and styles.
 If default path for components is not /components/ui, provide instructions on why it's important to create this folder
 Copy-paste this component to /components/ui folder:
 ```tsx
-text-reveal.tsx
-"use client";
+zoom-parallax.tsx
+'use client';
 
-import { FC, ReactNode, useRef } from "react";
-import { motion, MotionValue, useScroll, useTransform } from "framer-motion";
+import { useScroll, useTransform, motion } from 'framer-motion';
+import { useRef } from 'react';
 
-import { cn } from "@/lib/utils";
-
-interface TextRevealByWordProps {
-  text: string;
-  className?: string;
+interface Image {
+	src: string;
+	alt?: string;
 }
 
-const TextRevealByWord: FC<TextRevealByWordProps> = ({
-  text,
-  className,
-}) => {
-  const targetRef = useRef<HTMLDivElement | null>(null);
-
-  const { scrollYProgress } = useScroll({
-    target: targetRef,
-  });
-  const words = text.split(" ");
-
-  return (
-    <div ref={targetRef} className={cn("relative z-0 h-[200vh]", className)}>
-      <div
-        className={
-          "sticky top-0 mx-auto flex h-[50%] max-w-4xl items-center bg-transparent px-[1rem] py-[5rem]"
-        }
-      >
-        <p
-          ref={targetRef}
-          className={
-            "flex flex-wrap p-5 text-2xl font-bold text-black/20 dark:text-white/20 md:p-8 md:text-3xl lg:p-10 lg:text-4xl xl:text-5xl"
-          }
-        >
-          {words.map((word, i) => {
-            const start = i / words.length;
-            const end = start + 1 / words.length;
-            return (
-              <Word key={i} progress={scrollYProgress} range={[start, end]}>
-                {word}
-              </Word>
-            );
-          })}
-        </p>
-      </div>
-    </div>
-  );
-};
-
-interface WordProps {
-  children: ReactNode;
-  progress: MotionValue<number>;
-  range: [number, number];
+interface ZoomParallaxProps {
+	/** Array of images to be displayed in the parallax effect max 7 images */
+	images: Image[];
 }
 
-const Word: FC<WordProps> = ({ children, progress, range }) => {
-  const opacity = useTransform(progress, range, [0, 1]);
-  return (
-    <span className="xl:lg-3 relative mx-1 lg:mx-2.5">
-      <span className={"absolute opacity-30"}>{children}</span>
-      <motion.span
-        style={{ opacity: opacity }}
-        className={"text-black dark:text-white"}
-      >
-        {children}
-      </motion.span>
-    </span>
-  );
-};
+export function ZoomParallax({ images }: ZoomParallaxProps) {
+	const container = useRef(null);
+	const { scrollYProgress } = useScroll({
+		target: container,
+		offset: ['start start', 'end end'],
+	});
 
-export { TextRevealByWord };
+	const scale4 = useTransform(scrollYProgress, [0, 1], [1, 4]);
+	const scale5 = useTransform(scrollYProgress, [0, 1], [1, 5]);
+	const scale6 = useTransform(scrollYProgress, [0, 1], [1, 6]);
+	const scale8 = useTransform(scrollYProgress, [0, 1], [1, 8]);
+	const scale9 = useTransform(scrollYProgress, [0, 1], [1, 9]);
+
+	const scales = [scale4, scale5, scale6, scale5, scale6, scale8, scale9];
+
+	return (
+		<div ref={container} className="relative h-[300vh]">
+			<div className="sticky top-0 h-screen overflow-hidden">
+				{images.map(({ src, alt }, index) => {
+					const scale = scales[index % scales.length];
+
+					return (
+						<motion.div
+							key={index}
+							style={{ scale }}
+							className={`absolute top-0 flex h-full w-full items-center justify-center ${index === 1 ? '[&>div]:!-top-[30vh] [&>div]:!left-[5vw] [&>div]:!h-[30vh] [&>div]:!w-[35vw]' : ''} ${index === 2 ? '[&>div]:!-top-[10vh] [&>div]:!-left-[25vw] [&>div]:!h-[45vh] [&>div]:!w-[20vw]' : ''} ${index === 3 ? '[&>div]:!left-[27.5vw] [&>div]:!h-[25vh] [&>div]:!w-[25vw]' : ''} ${index === 4 ? '[&>div]:!top-[27.5vh] [&>div]:!left-[5vw] [&>div]:!h-[25vh] [&>div]:!w-[20vw]' : ''} ${index === 5 ? '[&>div]:!top-[27.5vh] [&>div]:!-left-[22.5vw] [&>div]:!h-[25vh] [&>div]:!w-[30vw]' : ''} ${index === 6 ? '[&>div]:!top-[22.5vh] [&>div]:!left-[25vw] [&>div]:!h-[15vh] [&>div]:!w-[15vw]' : ''} `}
+						>
+							<div className="relative h-[25vh] w-[25vw]">
+								<img
+									src={src || '/placeholder.svg'}
+									alt={alt || `Parallax image ${index + 1}`}
+									className="h-full w-full object-cover"
+								/>
+							</div>
+						</motion.div>
+					);
+				})}
+			</div>
+		</div>
+	);
+}
 
 
 demo.tsx
-"use client";
-import { TextRevealByWord } from "@/components/ui/text-reveal";
-import { cn } from "@/lib/utils";
+'use client';
+import React from 'react';
+import { cn } from '@/lib/utils';
+import Lenis from '@studio-freight/lenis'
+import { ZoomParallax } from "@/components/ui/zoom-parallax";
 
-export function TextRevealDemo() {
-  return (
-    <div className="min-h-[200vh] w-full relative">
-      <div className="fixed inset-0 flex items-center justify-center pointer-events-none">
-        <div className="w-full max-w-5xl mx-auto p-4">
-          <div
-            className={cn(
-              "rounded-lg w-full h-[500px]",
-              "border border-neutral-200 dark:border-neutral-800",
-              "bg-white/50 dark:bg-black/50 backdrop-blur-sm",
-              "flex items-center justify-center",
-              "pointer-events-auto"
-            )}
-          >
-            <TextRevealByWord text="Magic UI will change the way you design." />
-          </div>
-        </div>
-      </div>
+export default function DefaultDemo() {
 
-      <div className="h-[200vh]" aria-hidden="true" />
-    </div>
-  );
+	React.useEffect( () => {
+        const lenis = new Lenis()
+       
+        function raf(time: number) {
+            lenis.raf(time)
+            requestAnimationFrame(raf)
+        }
+
+        requestAnimationFrame(raf)
+    },[])
+
+
+	const images = [
+		{
+			src: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1280&h=720&fit=crop&crop=entropy&auto=format&q=80',
+			alt: 'Modern architecture building',
+		},
+		{
+			src: 'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=1280&h=720&fit=crop&crop=entropy&auto=format&q=80',
+			alt: 'Urban cityscape at sunset',
+		},
+		{
+			src: 'https://images.unsplash.com/photo-1557683316-973673baf926?w=800&h=800&fit=crop&crop=entropy&auto=format&q=80',
+			alt: 'Abstract geometric pattern',
+		},
+		{
+			src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1280&h=720&fit=crop&crop=entropy&auto=format&q=80',
+			alt: 'Mountain landscape',
+		},
+		{
+			src: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&h=800&fit=crop&crop=entropy&auto=format&q=80',
+			alt: 'Minimalist design elements',
+		},
+		{
+			src: 'https://images.unsplash.com/photo-1439066615861-d1af74d74000?w=1280&h=720&fit=crop&crop=entropy&auto=format&q=80',
+			alt: 'Ocean waves and beach',
+		},
+		{
+			src: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1280&h=720&fit=crop&crop=entropy&auto=format&q=80',
+			alt: 'Forest trees and sunlight',
+		},
+	];
+
+	return (
+		<main className="min-h-screen w-full">
+			<div className="relative flex h-[50vh] items-center justify-center">
+				{/* Radial spotlight */}
+				<div
+					aria-hidden="true"
+					className={cn(
+						'pointer-events-none absolute -top-1/2 left-1/2 h-[120vmin] w-[120vmin] -translate-x-1/2 rounded-full',
+						'bg-[radial-gradient(ellipse_at_center,--theme(--color-foreground/.1),transparent_50%)]',
+						'blur-[30px]',
+					)}
+				/>
+				<h1 className="text-center text-4xl font-bold">
+					Scroll Down for Zoom Parallax
+				</h1>
+			</div>
+			<ZoomParallax images={images} />
+			<div className="h-[50vh]"/>
+		</main>
+	);
 }
+
 ```
 
 Install NPM dependencies:

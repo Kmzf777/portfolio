@@ -5,21 +5,21 @@ import { motion } from "framer-motion"
 const tools = [
     {
         name: "Claude Code",
-        icon: "⌨️",
+        logo: "/claude-code-logo.png",
         description:
-            "Agente de código autônomo com acesso direto ao terminal, filesystem e capacidade de executar comandos complexos. Opera como um desenvolvedor sênior que entende o contexto inteiro do projeto.",
+            "Agente de código autônomo da Anthropic. Escreve, testa e corrige código com acesso completo ao projeto.",
     },
     {
         name: "Google Antigravity",
-        icon: "🚀",
+        logo: "/antigravity-logo.png",
         description:
-            "IA agêntica avançada com controle de browser, geração de imagens, pesquisa web e execução de código. Amplia as capacidades de desenvolvimento com visão computacional e automação.",
+            "IA agêntica do Google DeepMind. Pesquisa, navega na web, gera imagens e executa tarefas complexas de desenvolvimento.",
     },
     {
         name: "AIOX",
-        icon: "🧠",
+        logo: "/aiox-logo.png",
         description:
-            "Framework open-source de orquestração de IA com 12 agentes especializados — analyst, architect, dev, QA, devops e mais. Transforma requisitos em código funcional através do Autonomous Development Engine.",
+            "Framework open-source da SynkraAI. Orquestra 12 agentes especializados para planejar, desenvolver e testar projetos inteiros.",
         link: "https://github.com/SynkraAI/aiox-core",
     },
 ]
@@ -67,17 +67,16 @@ export function AboutMeSection() {
                 >
                     <div className="border-l-2 border-primary/40 pl-8">
                         <p className="text-lg md:text-xl text-zinc-300 leading-relaxed mb-6 font-serif italic">
-                            Eu sou Rafael — 20 anos, AI Builder. Não sigo o
-                            processo tradicional de desenvolvimento. Eu orquestro
-                            inteligências artificiais para construir projetos
+                            Eu sou o Rafael, tenho 20 anos e me considero um AI Builder.
+                            Não codifico linha por linha como no processo tradicional.
+                            Eu orquestro inteligências artificiais para construir projetos
                             inteiros com uma precisão e velocidade que equipes
-                            convencionais não alcançam.
+                            convencionais simplesmente não conseguem acompanhar.
                         </p>
                         <p className="text-base md:text-lg text-zinc-500 leading-relaxed">
-                            Meu método combina três ferramentas de ponta em um
-                            workflow único: cada IA assume um papel especializado
-                            no processo, desde o planejamento arquitetural até a
-                            entrega final com testes e QA completos.
+                            Meu método junta três ferramentas de ponta em um único
+                            workflow. Cada IA tem seu papel no processo, do
+                            planejamento até a entrega final com testes e revisão completa.
                         </p>
                     </div>
                 </motion.div>
@@ -110,12 +109,12 @@ export function AboutMeSection() {
                                 duration: 0.6,
                                 delay: idx * 0.15,
                             }}
-                            className={`p-8 md:p-10 ${idx < tools.length - 1
-                                    ? "border-b md:border-b-0 md:border-r border-primary/20"
-                                    : ""
+                            className={`p-8 md:p-10 bg-zinc-900 ${idx < tools.length - 1
+                                ? "border-b md:border-b-0 md:border-r border-primary/20"
+                                : ""
                                 } group hover:bg-primary/5 transition-colors duration-500`}
                         >
-                            <div className="text-4xl mb-6">{tool.icon}</div>
+                            <img src={tool.logo} alt={tool.name} className="w-10 h-10 object-contain mb-6 rounded-[5px]" />
                             <h4 className="text-xl font-black uppercase tracking-wider text-white mb-4 group-hover:text-primary transition-colors">
                                 {tool.name}
                             </h4>
@@ -145,81 +144,39 @@ export function AboutMeSection() {
                     transition={{ duration: 0.7 }}
                     className="mb-24"
                 >
-                    <div className="border border-primary/20 p-8 md:p-12 bg-zinc-950/50">
-                        <div className="flex flex-col md:flex-row gap-8 md:gap-16 items-start">
-                            <div className="flex-1">
-                                <span className="text-xs font-bold uppercase tracking-[0.3em] text-primary/60">
-                                    Como funciona
-                                </span>
-                                <h3 className="text-2xl md:text-4xl font-black uppercase tracking-tighter text-white mt-3 mb-6">
-                                    Orquestração{" "}
-                                    <span className="text-primary italic font-serif font-light lowercase">
-                                        Inteligente
-                                    </span>
-                                </h3>
-                                <div className="space-y-4 text-zinc-400 text-sm md:text-base leading-relaxed">
-                                    <p>
-                                        O AIOX conecta todos os agentes em um pipeline
-                                        unificado. O <strong className="text-zinc-200">Analyst</strong> pesquisa
-                                        e documenta requisitos. O{" "}
-                                        <strong className="text-zinc-200">Architect</strong> desenha a
-                                        estrutura técnica. O{" "}
-                                        <strong className="text-zinc-200">Dev</strong> implementa cada
-                                        subtarefa com contexto completo do projeto.
-                                    </p>
-                                    <p>
-                                        O <strong className="text-zinc-200">QA</strong> revisa cada build
-                                        automaticamente, o{" "}
-                                        <strong className="text-zinc-200">DevOps</strong> gerencia
-                                        infraestrutura e deployments, e o{" "}
-                                        <strong className="text-zinc-200">Scrum Master</strong> coordena
-                                        todo o fluxo de desenvolvimento em sprints
-                                        organizadas.
-                                    </p>
-                                    <p>
-                                        Com o Claude Code e o Antigravity integrados ao
-                                        AIOX, eu tenho um{" "}
-                                        <strong className="text-white">
-                                            time completo de desenvolvimento
-                                        </strong>{" "}
-                                        operando simultaneamente — 12 agentes
-                                        especializados que trabalham em sincronia para
-                                        entregar projetos com{" "}
-                                        <strong className="text-primary">
-                                            zero erros e velocidade recorde
-                                        </strong>
-                                        .
-                                    </p>
-                                </div>
-                            </div>
-                            <div className="flex-shrink-0 w-full md:w-auto">
-                                <div className="flex flex-col gap-3 font-mono text-xs">
-                                    {[
-                                        "analyst → pesquisa & PRD",
-                                        "pm → priorização",
-                                        "architect → design técnico",
-                                        "sm → sprints & histórias",
-                                        "dev → implementação",
-                                        "qa → testes & review",
-                                        "devops → deploy & CI/CD",
-                                    ].map((agent, i) => (
-                                        <motion.div
-                                            key={agent}
-                                            initial={{ opacity: 0, x: 20 }}
-                                            whileInView={{ opacity: 1, x: 0 }}
-                                            viewport={{ once: true }}
-                                            transition={{
-                                                duration: 0.4,
-                                                delay: 0.3 + i * 0.08,
-                                            }}
-                                            className="flex items-center gap-3 text-zinc-600 hover:text-primary transition-colors"
-                                        >
-                                            <span className="w-2 h-2 bg-primary/40 rounded-full flex-shrink-0" />
-                                            <span>{agent}</span>
-                                        </motion.div>
-                                    ))}
-                                </div>
-                            </div>
+                    <div className="border border-primary/20 p-8 md:p-12 bg-zinc-900">
+                        <span className="text-xs font-bold uppercase tracking-[0.3em] text-primary/60">
+                            Como funciona
+                        </span>
+                        <h3 className="text-2xl md:text-4xl font-black uppercase tracking-tighter text-white mt-3 mb-6">
+                            Um time inteiro.{" "}
+                            <span className="text-primary italic font-serif font-light lowercase">
+                                Uma pessoa.
+                            </span>
+                        </h3>
+                        <div className="space-y-4 text-zinc-400 text-sm md:text-base leading-relaxed max-w-3xl">
+                            <p>
+                                Cada projeto que chega, e cada atualização, passa por um{" "}
+                                <strong className="text-white">workflow completo de agentes de IA</strong> que eu
+                                controlo pessoalmente. Juntando Claude Code, Antigravity e AIOX,
+                                eu consigo colocar{" "}
+                                <strong className="text-white">vários agentes trabalhando ao mesmo tempo</strong>,
+                                cada um cuidando de uma parte diferente da implementação
+                                sem que um atrapalhe o código do outro.
+                            </p>
+                            <p>
+                                Enquanto um agente desenvolve o frontend, outro monta o backend,
+                                outro escreve testes e outro revisa tudo. O resultado? Um projeto
+                                que levaria semanas fica{" "}
+                                <strong className="text-primary">pronto em dias</strong>, já com
+                                testes passando, bugs corrigidos e código pronto pra produção.
+                            </p>
+                            <p className="text-zinc-500">
+                                Não é automação genérica. É meu método de trabalho real. Eu
+                                controlo cada etapa e cada agente. A diferença é que, onde outros
+                                profissionais precisam de uma equipe inteira, eu entrego o mesmo
+                                resultado sozinho, mais rápido e com mais consistência.
+                            </p>
                         </div>
                     </div>
                 </motion.div>
@@ -242,9 +199,9 @@ export function AboutMeSection() {
                                     duration: 0.5,
                                     delay: idx * 0.1,
                                 }}
-                                className={`p-8 md:p-10 text-center ${idx < metrics.length - 1
-                                        ? "border-b md:border-b-0 md:border-r border-primary/20"
-                                        : ""
+                                className={`p-8 md:p-10 text-center bg-zinc-900 ${idx < metrics.length - 1
+                                    ? "border-b md:border-b-0 md:border-r border-primary/20"
+                                    : ""
                                     } ${idx < 2 ? "border-b md:border-b-0" : ""}`}
                             >
                                 <div className="text-3xl md:text-5xl font-black text-primary mb-2">
